@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Teine koditöö, vorm GET</title>
+</head>
+<body>
+<form method="get" action="vorm1.html">
+  <h2>Tootja</h2>
+   <lable> <input type="checkbox" name="tootja" value="acer">Acer</lable>
+   <lable> <input type="checkbox" name="tootja" value="apple">Apple</lable>
+   <lable> <input type="checkbox" name="tootja"value="asus">Asus</lable>
+   <lable> <input type="checkbox" name="tootja"value="dell">Dell</lable>
+   <lable> <input type="checkbox" name="tootja"value="fuji">Fujitsu</lable>
+   <lable> <input type="checkbox" name="tootja"value="hp">HP</lable>
+   <lable> <input type="checkbox" name="tootja"value="lenovo">Lenovo</lable>
+  <h2>Protsessor</h2>
+   <select>
+     <option>AMD</option>
+     <option>Apple</option>
+     <option>INTEL</option>
+   </select><br/>
+  <h4>Tuumade arv</h4>
+     <input type="number" min="1" max="4" step="1">
+  <h4>Taktsagedus</h4>
+     <input type="range" name="freqInputName" id="freqInputId" value="1.5"  min="0.8" max="4.0" step="0.1" oninput="freqOutputId.value = freqInputId.value">
+     <output name="freqOutputName" id="freqOutputId">1.5</output>
+  &nbsp;GHz
+  <h2>Mälu</h2>
+     <label>
+       <input type="radio" name="memory"> 2 GB</label>
+     <br>
+     <label>
+       <input type="radio" name="memory"> 4 GB</label>
+     <br>
+     <label>
+       <input type="radio" name="memory"> 8 GB</label>
+     <br>
+  <h2>Hind</h2>
+     <input type="text" size="3"placeholder="min">
+   -
+     <input type="text" size="3"placeholder="max">
+  <br><br>
+    <button type=”submit”>
+    Otsi
+    </button>
+</form>
+
+</body>
+</html>
