@@ -7,13 +7,20 @@
 <body>
 <form method="get" action="vorm1.html">
   <h2>Tootja</h2>
-   <lable> <input type="checkbox" name="tootja" value="acer">Acer</lable>
-   <lable> <input type="checkbox" name="tootja" value="apple">Apple</lable>
-   <lable> <input type="checkbox" name="tootja"value="asus">Asus</lable>
-   <lable> <input type="checkbox" name="tootja"value="dell">Dell</lable>
-   <lable> <input type="checkbox" name="tootja"value="fuji">Fujitsu</lable>
-   <lable> <input type="checkbox" name="tootja"value="hp">HP</lable>
-   <lable> <input type="checkbox" name="tootja"value="lenovo">Lenovo</lable>
+   <label> 
+     <input type="checkbox" name="tootja" value="acer">Acer</label>
+   <label> 
+     <input type="checkbox" name="tootja" value="apple">Apple</label>
+   <label> 
+     <input type="checkbox" name="tootja" value="asus">Asus</label>
+   <label> 
+     <input type="checkbox" name="tootja" value="dell">Dell</label>
+   <label> 
+     <input type="checkbox" name="tootja" value="fuji">Fujitsu</label>
+   <label> 
+     <input type="checkbox" name="tootja" value="hp">HP</label>
+   <label> 
+     <input type="checkbox" name="tootja" value="lenovo">Lenovo</label>
   <h2>Protsessor</h2>
    <select>
      <option>AMD</option>
@@ -21,30 +28,34 @@
      <option>INTEL</option>
    </select><br/>
   <h4>Tuumade arv</h4>
-     <input type="number" min="1" max="4" step="1">
+     <input type="number" name="cores" min="1" max="4" step="1">
   <h4>Taktsagedus</h4>
      <input type="range" name="freqInputName" id="freqInputId" value="1.5"  min="0.8" max="4.0" step="0.1" oninput="freqOutputId.value = freqInputId.value">
      <output name="freqOutputName" id="freqOutputId">1.5</output>
   &nbsp;GHz
   <h2>Mälu</h2>
      <label>
-       <input type="radio" name="memory"> 2 GB</label>
+       <input type="radio" name="memory" value="2"> 2 GB</label>
      <br>
      <label>
-       <input type="radio" name="memory"> 4 GB</label>
+       <input type="radio" name="memory" value="4"> 4 GB</label>
      <br>
      <label>
-       <input type="radio" name="memory"> 8 GB</label>
+       <input type="radio" name="memory" value="8"> 8 GB</label>
      <br>
   <h2>Hind</h2>
-     <input type="text" size="3"placeholder="min">
+     <input type="text" name="pricemin" size="3" placeholder="min">
    -
-     <input type="text" size="3"placeholder="max">
+     <input type="text" name="pricemax" size="3" placeholder="max">
   <br><br>
-    <button type=”submit”>
-    Otsi
-    </button>
+    <button type="submit">Otsi</button>
+    
+   
 </form>
-
+<p>
+ 		<a href="http://validator.w3.org/check?uri=referer">
+  		<img src="http://www.w3.org/Icons/valid-xhtml10" alt="Valid XHTML 1.0 Strict" height="31" width="88" />
+		</a>
+	</p>
 </body>
 </html>
