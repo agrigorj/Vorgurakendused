@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Teine kodutöö: tabel 1</title>
+</head>
+<body>
+
+<table border="1">
+<caption>Nädala vaadatuimad filmid</caption>
+   <tr>
+	   <th>Koht</th><th>Filmi nimi</th><th>Žanr</th><th>Vanuse piirang</th>
+	</tr>
+	<tr>
+	   <td>01.</td>
+	   <td>Kalssikokkutulek</td>
+	   <td>Komöödia</td>
+      <td>(K-14)</td>
+   </tr>
+	<tr>
+	   <td>02.</td>
+	   <td>Robinson Crusoe</td>
+      <td> Komöödia, seiklus, animatsioon </td>
+      <td>(PERE)</td>
+   </tr>
+   <tr>
+	   <td>03.</td>
+	   <td>Deadpool</td>
+      <td>Action, ulmefilm, seiklus</td>
+      <td>(K-14)</td>
+   </tr>
+   <tr>
+	   <td>04.</td>
+	   <td>Alvin ja koopaoravad: Oravad rattas</td>
+      <td> Komöödia, seiklus, animatsioon</td>
+      <td>(PERE)</td>
+   </tr>
+   <tr>
+	   <td>05.</td>
+	   <td>Egiptuse jumalad</td>
+      <td>Seiklus, fantaasia </td>
+      <td>(MS12)</td>
+   </tr>
+</table>
+</body>
+</html>
