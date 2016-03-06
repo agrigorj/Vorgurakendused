@@ -40,6 +40,16 @@ h3{
 	padding:5px;   
 	cursor: url('http://enos.itcollege.ee/~agrigorj/1.koduylesanne/Pics/smiley.png'), auto;
 }
+#mypic:hover{
+border: 10px dashed;
+border-left-color: red;
+border-right-color:green;
+border-top-color: cyan;
+border-bottom-color: honeydew;
+border-radius: 80px;
+padding:8px;   
+cursor: url('http://enos.itcollege.ee/~agrigorj/1.koduylesanne/Pics/smiley.png'), auto;
+}
 #kyss{
 	text-align: center;
 	color: darkorange;
@@ -49,6 +59,10 @@ h3{
 	text-align: center;
 	color: darkblue;
 	font-size: 20px;
+}
+#link2:hover{
+	color: yellow;
+	font-size: 30px;
 }
 pre{
 	font-size: 15px;
