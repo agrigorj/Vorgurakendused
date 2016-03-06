@@ -1,0 +1,61 @@
+body{
+	background-color: lightblue;
+	
+}
+h1{
+	text-align: center;
+	color: yellowgreen;
+	background-color: purple;
+}
+#link1{
+	color:red;
+}
+p span{
+	font-style:italic;
+	text-decoration: underline;
+	font-size: 200%;
+	font-family: Times;
+	color: orange;
+	
+}
+#link2{
+	color: red;
+}
+h3{
+	text-align: center;	
+	background-color: purple;
+	color: yellowgreen;
+}
+#mypic{ 
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	border: 10px dotted;
+	border-left-color: orange;
+	border-right-color:salmon;
+	border-top-color: gold;
+	border-bottom-color: blue;;
+	border-radius: 100px;
+	padding:5px;   
+	cursor: url('http://enos.itcollege.ee/~agrigorj/1.koduylesanne/Pics/smiley.png'), auto;
+}
+#kyss{
+	text-align: center;
+	color: darkorange;
+	font-size: 150%;
+}
+#anekdoot{
+	text-align: center;
+	color: darkblue;
+	font-size: 20px;
+}
+pre{
+	font-size: 15px;
+	color: red;
+	cursor: url('http://enos.itcollege.ee/~agrigorj/1.koduylesanne/Pics/smile.gif'), auto;
+	border: 3px outset;
+	border-color: darkblue;
+}
+ul{
+	list-style-type: square;
+}
