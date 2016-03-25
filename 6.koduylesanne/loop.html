@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8" />
-	<title>Kodune Ülesanne</title>
+	<title>Kodune Ülesanne 6</title>
 	<style type="text/css">
 	.active { background: skyblue; padding: 10px;}
 	</style>
@@ -12,13 +12,25 @@
 	$(document).ready(function(){
 	
 	$("ul li:first").addClass("active");
-	$ ("#next").click (function(){
+	
+	$ ("#next").click (function next(){
 	var current=$("ul li.active");
 	$("ul li").removeClass("active");
 	if (current.next().length==0) {
 	$("ul li:first").addClass("active");	
 	} else {
 			current.next().addClass("active");
+			}
+
+	});
+	
+	$ ("#prev").click (function prev(){
+	var current2=$("ul li.active");
+	$("ul li").removeClass("active");
+	if (current2.is(":first-child")) {
+	$("ul li:last").addClass("active");	
+	} else {
+			current2.prev().addClass("active");
 			}
 
 	});
