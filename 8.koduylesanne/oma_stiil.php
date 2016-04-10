@@ -66,17 +66,17 @@ if (isset($_POST['user']) && $_POST['user']!="") {
 <table>
 		<tr>
        <td>Your text: <br /><br /></td>
-       <td><textarea name="user" cols="50" rows="5" ><?php if (isset($_POST['user'])) echo $_POST['user'];?></textarea><br /><br /></td>
+       <td><textarea name="user" cols="50" rows="5" ><?php if (isset($_POST['user'])) echo htmlspecialchars( $_POST['user']);?></textarea><br /><br /></td>
      </tr> 
  </table>
 <table>
        <tr>
        <td>Tekstivärvus<br /><br /></td>
-       <td> <input type="color" name="txt_col" value="<?php if (isset($_POST['txt_col'])) echo $_POST['txt_col']; ?>"><br /><br /></td>
+       <td> <input type="color" name="txt_col" value="<?php if (isset($_POST['txt_col'])) echo htmlspecialchars( $_POST['txt_col']); ?>"><br /><br /></td>
     	 </tr> 
     	 <tr>
     	  <td>Taustavärvus<br /><br /></td>
-       <td> <input type="color" name="bgr_col" value= "<?php if (isset($_POST['bgr_col'])) echo $_POST['bgr_col']; ?>"><br /><br /></td>
+       <td> <input type="color" name="bgr_col" value= "<?php if (isset($_POST['bgr_col'])) echo htmlspecialchars( $_POST['bgr_col']); ?>"><br /><br /></td>
     	 </tr> 
  </table>
  <table class="borderP">
@@ -84,7 +84,7 @@ if (isset($_POST['user']) && $_POST['user']!="") {
       <td>Piirjoone tüüp:<br /><br /></td>
       <td>
        <select name="border">
-       <option value="<?php if (isset($_POST['border'])) {echo $_POST['border'];} else echo "select" ?>"><?php if (isset($_POST['border'])) {echo $_POST['border'];} else echo "select" ?></option>
+       <option value="<?php if (isset($_POST['border'])) {echo $_POST['border'];} else echo "select" ?>"><?php if (isset($_POST['border'])) {echo htmlspecialchars ($_POST['border']);} else echo "select" ?></option>
         <option value="dotted">dotted</option>
         <option value="dashed">dashed</option>
         <option value="solid">solid</option>
@@ -98,15 +98,15 @@ if (isset($_POST['user']) && $_POST['user']!="") {
      </tr>
   		<tr>
        <td>Piirjoone laius (0-20px) <br /><br /></td>
-       <td> <input type="number" name="weight" value="<?php if (isset($_POST['weight'])) echo $_POST['weight']; ?>" min="0" max="20" step="1"><br /><br /></td>
+       <td> <input type="number" name="weight" value="<?php if (isset($_POST['weight'])) echo htmlspecialchars ($_POST['weight']); ?>" min="0" max="20" step="1"><br /><br /></td>
     	 </tr> 
      <tr>
        <td>Piirjoone nurga raadius (0-100px) <br /><br /></td>
-       <td> <input type="number" name="radius" value="<?php if (isset($_POST['radius'])) echo $_POST['radius']; ?>" min="0" max="100" step="1"><br /><br /></td>
+       <td> <input type="number" name="radius" value="<?php if (isset($_POST['radius'])) echo htmlspecialchars($_POST['radius']); ?>" min="0" max="100" step="1"><br /><br /></td>
     	 </tr> 
     <tr>
        <td>Piirjoone värvus<br /><br /></td>
-       <td> <input type="color" name="b_color" value="<?php if (isset($_POST['b_color'])) echo $_POST['b_color']; ?>"><br /><br /></td>
+       <td> <input type="color" name="b_color" value="<?php if (isset($_POST['b_color'])) echo htmlspecialchars ( $_POST['b_color']); ?>"><br /><br /></td>
     	 </tr> 
     	 <tr>  
      <td colspan=2>
