@@ -6,9 +6,20 @@
 <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-<?php require_once('head.html');?>
 
-
+<div id="header">
+	<ul>
+		<li><a href="pealeht.html">Pealeht</a></li>
+		<li><a href="galerii.html">Galerii</a></li>
+		<li><a href="vote.html">Hääletamine</a></li>
+	</ul>
+</div>
+<div id="banner">
+	<img src="banner1.jpg" alt="banner">
+</div>
+<div id="wrap">
+	<h3>Fotod</h3>
+	<div id="gallery">
 <?php
 $files = array();
 $dir = opendir('pildid'); // open the cwd..also do an err check.
@@ -25,5 +36,6 @@ foreach($files as $file) {
 ?>
 	</div>
 </div>
-<?php require_once('foot.html');?>
+<div id="footer">&copy; 2015</div>
+</body>
 </html>

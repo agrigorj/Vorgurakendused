@@ -7,8 +7,6 @@
 </head>
 <body>
 <?php require_once('head.html');?>
-
-
 <?php
 $files = array();
 $dir = opendir('pildid'); // open the cwd..also do an err check.
@@ -17,13 +15,29 @@ while(false != ($file = readdir($dir))) {
                 $files[] = $file; // put in array.
         }   
 }
-natsort($files); // sort.
-// print.
-foreach($files as $file) {
-        echo("<img src='pildid/".$file."' alt='".$file."' />");
-}
+natsort($files);
 ?>
-	</div>
-</div>
+<?php
+
+if(!empty($_GET)) {
+$pg=$_GET['page'];
+}else {$pg="pealeht";
+}
+switch($pg) {
+	case "galerii":
+		require_once('galerii.html');
+		break;
+	case "vote":
+		require_once('vote.html');
+		break;
+	case "pealeht":
+		require_once('pealeht.html');
+		break;
+	case "tulemus":
+		require_once('tulemus.html');
+		break;}
+
+?>
 <?php require_once('foot.html');?>
+</body>
 </html>
