@@ -13,7 +13,6 @@
 	<p>
 	<?php
 	if(!empty($_POST)) {
-	echo $_POST['pilt'];
 		if (in_array($_POST['pilt'], $files)) {
     		echo "Aitähh! Sinu hääl salvestatud!";
 				}else { echo "ERROR: Wrong value!";}

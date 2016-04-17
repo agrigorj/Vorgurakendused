@@ -18,10 +18,11 @@ while(false != ($file = readdir($dir))) {
 natsort($files);
 ?>
 <?php
-$pg="pealeht";
+
 if(!empty($_GET)) {
 $pg=$_GET['page'];
-
+}else {$pg="pealeht";
+}
 switch($pg) {
 	case "galerii":
 		require_once('galerii.html');
@@ -35,7 +36,7 @@ switch($pg) {
 	case "tulemus":
 		require_once('tulemus.html');
 		break;}
-}
+
 ?>
 <?php require_once('foot.html');?>
 </body>
