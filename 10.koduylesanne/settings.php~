@@ -11,7 +11,7 @@ if (isset($_POST['tc']))
 $border_width =0;
 if (isset($_POST['bw']) ) 
     $border_width = htmlspecialchars($_POST['bw']); 
-$border_style =" solid ";
+$border_style =" none ";
 if (isset($_POST['bs']) ) 
     $border_style = htmlspecialchars($_POST['bs']); 
 $border_color =" black ";
@@ -28,7 +28,7 @@ if (isset($_POST['br']) )
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>Praktikum  - Ülesanne</title>
+    <title>10. kodutöö</title>
 
     <style type="text/css">
 
@@ -50,6 +50,7 @@ if (isset($_POST['br']) )
 
     $stiilid=array("solid", "dashed", "dotted", "none", "double");
 
+
     ?>
 
     <div id="text"> <?php if (isset($_POST['text'])) echo htmlspecialchars($_POST['text']); ?></div>
@@ -70,7 +71,7 @@ if (isset($_POST['br']) )
             <label>Piirjoone laius (0-20px)</label>
             <br/>
             <select name="bs">
-            <option value="<?php if (isset($_POST['bs'])) {echo $_POST['bs'];} else echo "select" ?>"><?php echo $border_style; ?></option>
+            <option value="<?php echo $border_style;?>"><?php echo $border_style; ?></option>
                 <?php foreach($stiilid as $stiil):?>
                     <option><?php  echo $stiil; ?></option>
                 <?php endforeach; ?>
