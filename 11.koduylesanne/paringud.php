@@ -30,7 +30,7 @@ if ($result->num_rows > 0) {
         echo "<tr><td>" . $row['id'] . "</td><td>" . $row['nimi'] . "</td><td>" . $row['vanus'] . "</td><td>" . $row['liik'] . "</td><td>" . $row['puur'] . "</td></tr>";      }
      echo "</table>";
      } else {
-     echo $result;
+     echo "no results";
 }
 
 $conn->close();
@@ -61,7 +61,68 @@ if ($result->num_rows > 0) {
          echo "<br> nimi: ". $row["nimi"]. " - puur: ". $row["puur"]. "<br>";
      }
      } else {
-     echo $result;
+     echo "no results";
+}
+
+$conn->close();
+?> 
+</p>
+
+<p><b>2. Hankida vanima ja noorima looma vanused:</b><br>
+
+<?php
+$servername = "localhost";
+$username = "test";
+$password = "t3st3r123";
+$dbname = "test";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+     die("Connection failed: " . $conn->connect_error);
+}
+
+$sql = "SELECT MAX(vanus), MIN(vanus) FROM loomaaed_agrigorj";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    //  output data of each row
+   while($row = $result->fetch_assoc()) {
+         echo "<br> noorim: ".$row["MIN(vanus)"]."-aastane ja vanim: ". $row["MAX(vanus)"]."-aastane.<br>";
+     }
+     } else {
+     echo "no results";
+}
+
+$conn->close();
+?> 
+</p>
+<p><b>3. Hankida puuri number koos selles elavate loomade arvuga:</b><br>
+
+<?php
+$servername = "localhost";
+$username = "test";
+$password = "t3st3r123";
+$dbname = "test";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+     die("Connection failed: " . $conn->connect_error);
+}
+
+$sql = "SELECT puur, COUNT(*) FROM loomaaed_agrigorj GROUP BY puur";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    //  output data of each row
+   while($row = $result->fetch_assoc()) {
+         echo "<br>Puuris nr ".$row["puur"]." elab " .$row["COUNT(*)"]." loom(a).<br>";
+     }
+     } else {
+     echo "no results";
 }
 
 $conn->close();
