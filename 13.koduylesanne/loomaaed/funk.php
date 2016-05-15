@@ -15,10 +15,10 @@ function connect_db(){
 function kuva_puurid(){
 	// siia on vaja funktsionaalsust
 	global $connection;
-	$p= mysqli_query($connection, "select distinct(puur) as puur from annely_loomaaed order by puur asc");
+	$p= mysqli_query($connection, "select distinct(puur) as puur from agrigorj_loomaaed order by puur asc");
 	$puurid=array();
 	while ($r=mysqli_fetch_assoc($p)){
-		$l=mysqli_query($connection, "SELECT * FROM loomaaed WHERE  puur=".mysqli_real_escape_string($connection, $r['puur']));
+		$l=mysqli_query($connection, "SELECT * FROM agrigorj_loomaaed WHERE  puur=".mysqli_real_escape_string($connection, $r['puur']));
 		while ($row=mysqli_fetch_assoc($l)) {
 			$puurid[$r['puur']][]=$row;
 		}
@@ -28,11 +28,39 @@ function kuva_puurid(){
 }
 
 function logi(){
-	// siia on vaja funktsionaalsust (13. nädalal)
-	global $connection;
+		global $connection;
 	if(!empty($_SESSION["user"])){
 		header("Location: ?page=loomad");
-	};
+	}else{
+		if($_SERVER['REQUEST_METHOD'] == 'POST'){
+			if($_POST["user"] == '' || $_POST["pass"] == ''){
+				$errors =array();
+				if(empty($_POST["user"])) {
+					
+					$errors[] = "Kasutajanimi puudub!";
+				}
+				
+				if(empty($_POST["pass"]))
+					
+					$errors[] = "Parooli väli on tühi!";
+				}else{
+					$u = mysqli_real_escape_string ($connection, $_POST["user"]);
+					$p = mysqli_real_escape_string ($connection, $_POST["pass"]);
+					$sql = "SELECT id FROM agrigorj_kylastajad WHERE username='$u' AND passw=sha1('$p')";
+					$result = mysqli_query($connection, $sql);
+					$row = mysqli_num_rows($result);
+					if($row){
+						$_SESSION["user"] = $_POST["user"];
+						header("Location: ?page=loomad");
+						
+					}else{
+						header("Location: ?page=login");
+					}
+				}				
+			}else{
+				
+			}
+		}
 
 	include_once('views/login.html');
 }
