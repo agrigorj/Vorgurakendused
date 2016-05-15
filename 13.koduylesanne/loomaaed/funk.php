@@ -14,21 +14,28 @@ function connect_db(){
 
 function kuva_puurid(){
 	// siia on vaja funktsionaalsust
-	global $connection;
+global $connection;	
+	
+	if(empty($_SESSION["user"])){
+		header("Location: ?page=login");
+		
+	}else{	
 	$p= mysqli_query($connection, "select distinct(puur) as puur from agrigorj_loomaaed order by puur asc");
 	$puurid=array();
 	while ($r=mysqli_fetch_assoc($p)){
+		
 		$l=mysqli_query($connection, "SELECT * FROM agrigorj_loomaaed WHERE  puur=".mysqli_real_escape_string($connection, $r['puur']));
 		while ($row=mysqli_fetch_assoc($l)) {
 			$puurid[$r['puur']][]=$row;
+			
 		}
 	}
+}
 	include_once('views/puurid.html');
-	
 }
 
 function logi(){
-		global $connection;
+	global $connection;
 	if(!empty($_SESSION["user"])){
 		header("Location: ?page=loomad");
 	}else{
@@ -72,10 +79,38 @@ function logout(){
 }
 
 function lisa(){
-	// siia on vaja funktsionaalsust (13. nädalal)
+		global $connection;
+	
+	if(empty($_SESSION["user"])){
+		header("Location: ?page=login");
+	}else{
+		if($_SERVER['REQUEST_METHOD'] == 'POST'){
+			if($_POST["nimi"] == '' || $_POST["puur"] == '' ){
+				$errors =array();
+				if(empty($_POST["nimi"])) {
+					$errors[] = "Sisesta nimi!";
+				}
+				if(empty($_POST["puur"])){
+					$errors[] = "Sisesta puur!";
+				}
+				}else{
+					upload('liik');
+					$nimi = mysqli_real_escape_string ($connection, $_POST["nimi"]);
+					$puur = mysqli_real_escape_string ($connection, $_POST["puur"]);
+					$liik = mysqli_real_escape_string ($connection, "pildid/".$_FILES["liik"]["name"]);
+					$sql = "INSERT INTO agrigorj_loomaaed (nimi, puur, liik) VALUES ('$nimi','$puur','$liik')";
+					$result = mysqli_query($connection, $sql);
+					$id = mysqli_insert_id($connection);
+					if($id){
+						header("Location: ?page=loomad");
+					}else{
+						header("Location: ?page=loomavorm");
+					}
+				}
+			}
+		}
 	
 	include_once('views/loomavorm.html');
-	
 }
 
 function upload($name){
