@@ -1,13 +1,14 @@
 <p><body> 
 	    <h3>Otsi projektid</h3> 
 	    <p>Sisesta otsingu parameetrid</p> 
-     <form  method="GET" action="?page=otsi"  enctype="multipart/form-data"> 
+     <form  method="POST" action="?page=otsi"  enctype="multipart/form-data"> 
 <table cellspacing="10">
    <tr>
 		<td> Projekti nimetus:<br /></td>	
 		<td><input type="text" name="name" placeholder="Projekti nimetus" value="<?php if (isset($projekt['name'])) echo htmlspecialchars($projekt['name']); ?>"/><br/></td>
 		<td> Projekti sisu:<br /></td>		 
 		<td> <select name="type"> 
+			<option></option>
      		<option>Kergliiklustee projekt</option>
      		<option>Maantee rekonstrueerimine</option>
     	 	<option>Maantee taastusremont</option>

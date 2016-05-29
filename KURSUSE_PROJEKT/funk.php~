@@ -120,7 +120,7 @@ function lisa(){
 					$maksumus = $_POST["maksumus"];
 					$sisu = mysqli_real_escape_string ($connection, $_POST["sisu"]);
 					$link = mysqli_real_escape_string ($connection, $_POST["link"]);					
-					$sql = "INSERT INTO agrigorj_projektipank (tellija, nimi, sisu, projektijuht, projekteerija, pikkus, pindala, aasta, maksumus, link) VALUES ('$tellija','$nimi', '$sisu', '$projektijuht', '$projekteerija', '$pikkus', '$pindala','$aasta','$maksumus','$link')";
+					$sql = "INSERT INTO agrigorj_projektipank (tellija, nimi, projektiNr, sisu, projektijuht, projekteerija, pikkus, pindala, aasta, maksumus, link) VALUES ('$tellija','$nimi', '$projektiNr', '$sisu', '$projektijuht', '$projekteerija', '$pikkus', '$pindala','$aasta','$maksumus','$link')";
 					$result = mysqli_query($connection, $sql);
 					$id = mysqli_insert_id($connection);
 					if($id){
@@ -141,11 +141,62 @@ function otsi(){
 		header("Location: ?page=login");
 	}else{
 		if($_SERVER['REQUEST_METHOD'] == 'POST'){
-			if($_GET["name"] == '' && $_GET["type"] == '' && $_GET["manager"] == ''&& $_GET["designer"] == ''&& $_GET["length"] == ''&& $_GET["area"] == ''&& $_GET["year"] == ''&& $_GET["price"] == '' ){
+			if($_POST["name"] == '' && $_POST["manager"] == ''&& $_POST["designer"] == ''&& $_POST["length"] == ''&& $_POST["area"] == ''&& $_POST["year"] == ''&& $_POST["price"] == '' && $_POST["type"] == ''){
 				$errors =array();
-				$errors[] = "Vali vähemalt üks parameeter!";
+				echo "Vali vähemalt üks parameeter!";
 				}else{
-				
+					$projektijuht = mysqli_real_escape_string ($connection, $_POST["manager"]);
+					$aasta = $_POST["year"];
+					$nimi = mysqli_real_escape_string ($connection, $_POST["name"]);
+					$projekteerija = mysqli_real_escape_string ($connection, $_POST["designer"]);
+					$pikkus = $_POST["length"];
+					$pindala = $_POST["area"];
+					$maksumus = $_POST["price"];
+					$sisu = mysqli_real_escape_string ($connection, $_POST["type"]);		
+					$sql = "SELECT * FROM agrigorj_projektipank WHERE projektijuht LIKE '%'$projektijuht'%'";
+					$sql = "SELECT * FROM agrigorj_projektipank WHERE aasta='$aasta'";
+					$sql = "SELECT * FROM agrigorj_projektipank WHERE nimi='$nimi'";
+					$sql = "SELECT * FROM agrigorj_projektipank WHERE projekteerija='$projekteerija'";
+					$sql = "SELECT * FROM agrigorj_projektipank WHERE pikkus>'$pikkus'";
+					$sql = "SELECT * FROM agrigorj_projektipank WHERE pindala>'$pindala'";
+					$sql = "SELECT * FROM agrigorj_projektipank WHERE maksumus >'$maksumus'";
+					$sql = "SELECT * FROM agrigorj_projektipank WHERE sisu='$sisu'";
+					$result =mysqli_query($connection, $sql);
+				   if ($result->num_rows > 0) {
+    //  output data of each row
+    echo "<table border='1'>
+ <tr>
+    <td>id </td>
+    <td>Tellija </td>
+    <td>Projekti nimetus </td>
+    <td>Projekti nr </td>
+    <td>Projekti sisu</td>
+    <td>Projektijuht</td>
+    <td>Projekteerija</td>
+    <td>Tee pikkus (km)</td>
+    <td>Tee pindala (m2)</td>
+    <td>Teostamise aasta</td>
+    <td>Projekti maksumus (EUR)</td>
+    <td>Link projektile</td>
+ </tr>"; 
+    while($row = $result->fetch_assoc()) {
+        echo "<tr>
+        <td>" . $row['id'] . "</td>
+        <td>" . $row['tellija'] . "</td>
+        <td>" . $row['nimi'] . "</td>
+        <td>" . $row['projektiNr'] . "</td>
+        <td>" . $row['sisu'] . "</td>
+        <td>" . $row['projektijuht'] . "</td>
+        <td>" . $row['projekteerija'] . "</td>
+        <td>" . $row['pikkus'] . "</td>
+        <td>" . $row['pindala'] . "</td>
+        <td>" . $row['aasta'] . "</td>
+        <td>" . $row['maksumus'] . "</td>
+        <td>" . $row['link'] . "</td>
+        </tr>";      }
+     echo "</table>";
+     } else {
+     echo "no results";
 						
 }
 					
@@ -155,6 +206,7 @@ function otsi(){
 		
 	
 	include_once('views/otsivorm.html');
+}
 }
 
 function upload($name){
