@@ -16,6 +16,7 @@
 	<tr>	
 		<td> Projekti sisu:<br /><br /></td>		 
 		<td> <select name="sisu"> 
+			<option></option>
      		<option>Kergliiklustee projekt</option>
      		<option>Maantee rekonstrueerimine</option>
     	 	<option>Maantee taastusremont</option>
@@ -46,7 +47,7 @@
   	 	<td>	<input type="number" name="aasta" placeholder="aasta" value="<?php if (isset($projekt['aasta'])) echo htmlspecialchars($projekt['aasta']); ?>"/><br/><br /></td>
   	</tr>
   	<tr>
-  	 <td> Projekti maksumus<br />(käibemaksuta):<br /></td>  	
+  	 <td> Projekti maksumus<br />käibemaksuta (EUR):<br /></td>  	
   	 <td><input type="number" name="maksumus" placeholder="maksumus" value="<?php if (isset($projekt['maksumus'])) echo htmlspecialchars($projekt['maksumus']); ?>"/><br/></td>
   	</tr>
   	<tr>
