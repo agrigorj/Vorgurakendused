@@ -1,0 +1,63 @@
+<h2>Lisa uus projekt</h2>
+<form action="?page=lisa" method="POST" enctype="multipart/form-data">
+<table cellspacing="10`">
+   <tr>
+     <td>Projekti Tellija:<br /><br /></td>
+		<td><input type="text" name="tellija" placeholder="Tellija" value="<?php if (isset($projekt['tellija'])) echo htmlspecialchars($projekt['tellija']); ?>"/><br/><br /></td>
+	</tr>
+	<tr>
+		<td> Projekti nimetus:<br /><br /></td>	
+		<td><input type="text" name="nimi" placeholder="Projekti nimetus" value="<?php if (isset($projekt['nimi'])) echo htmlspecialchars($projekt['nimi']); ?>"/><br/><br /></td>
+	</tr>	
+	<tr>
+		<td> Projekti number:<br /><br /></td>		
+		<td><input type="number" name="projektiNr" placeholder="Projekti nr" value="<?php if (isset($projekt['projektiNr'])) echo htmlspecialchars($projekt['projektiNr']); ?>"/><br/><br /></td>
+	</tr>	
+	<tr>	
+		<td> Projekti sisu:<br /><br /></td>		 
+		<td> <select name="sisu"> 
+     		<option>Kergliiklustee projekt</option>
+     		<option>Maantee rekonstrueerimine</option>
+    	 	<option>Maantee taastusremont</option>
+     		<option>Linnatänava taastusremont</option>
+     		<option>Linnatänava rekonstrueerimine</option>
+     		<option>Parkimisplatsid</option>
+    		 <option>Juurdepääsutee</option> 
+  		 </select><br/><br /></td>
+  	</tr>
+  	<tr>
+		<td> Projektijuht:<br /><br /></td>
+  	 	<td><input type="text" name="projektijuht" placeholder="Projektijuht" value="<?php if (isset($projekt['projektijuht'])) echo htmlspecialchars($projekt['projektijuht']); ?>"/><br/><br /></td>
+	</tr>	
+	  	<tr>
+		<td> Vastutav projekteerija:<br /><br /></td>
+  	 	<td><input type="text" name="projekteerija" placeholder="Projekteerija" value="<?php if (isset($projekt['projekteerija'])) echo htmlspecialchars($projekt['projekteerija']); ?>"/><br/><br /></td>
+	</tr>	
+  	<tr>
+		<td> Tee pikkus (km):<br /><br /></td>
+  	 	<td><input type="number" name="pikkus" placeholder="pikkus" value="<?php if (isset($projekt['pikkus'])) echo htmlspecialchars($projekt['pikkus']); ?>"/><br/><br /></td>
+	</tr>	
+	<tr>
+		<td> Tee pindala (m2):<br /><br /></td>
+  	 	<td><input type="number" name="pindala" placeholder="pindala" value="<?php if (isset($projekt['pindala'])) echo htmlspecialchars($projekt['pindala']); ?>"/><br/><br /></td>
+	</tr>	
+	<tr>
+		<td> Teostamise kuu/aasta:<br /><br /></td>  	
+  	 	<td>	<input type="month" name="aasta" placeholder="kuu/aasta" value="<?php if (isset($projekt['aasta'])) echo htmlspecialchars($projekt['aasta']); ?>"/><br/><br /></td>
+  	</tr>
+  	<tr>
+  	 <td> Projekti maksumus<br />(käibemaksuta):<br /></td>  	
+  	 <td><input type="number" name="maksumus" placeholder="maksumus" value="<?php if (isset($projekt['maksumus'])) echo htmlspecialchars($projekt['maksumus']); ?>"/><br/></td>
+  	</tr>
+  	<tr>
+  	 <td><br /> Projekti link:<br /><br /></td>  	
+  	 <td><br /><input type="url" name="link" placeholder="http://" value="<?php if (isset($projekt['link'])) echo htmlspecialchars($projekt['link']); ?>"/><br/><br /></td>
+  	</tr>
+  	 	</table>
+		<input type="submit" value="Lisa"/> 
+</form>
+<?php if (isset($errors)):?>
+		<?php foreach($errors as $error):?>
+			<div style="color:red;"><?php echo htmlspecialchars($error); ?></div>
+		<?php endforeach;?>
+	<?php endif;?>
