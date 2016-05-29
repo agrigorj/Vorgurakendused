@@ -42,8 +42,8 @@
   	 	<td><input type="number" name="pindala" placeholder="pindala" value="<?php if (isset($projekt['pindala'])) echo htmlspecialchars($projekt['pindala']); ?>"/><br/><br /></td>
 	</tr>	
 	<tr>
-		<td> Teostamise kuu/aasta:<br /><br /></td>  	
-  	 	<td>	<input type="month" name="aasta" placeholder="kuu/aasta" value="<?php if (isset($projekt['aasta'])) echo htmlspecialchars($projekt['aasta']); ?>"/><br/><br /></td>
+		<td> Teostamise aasta:<br /><br /></td>  	
+  	 	<td>	<input type="number" name="aasta" placeholder="aasta" value="<?php if (isset($projekt['aasta'])) echo htmlspecialchars($projekt['aasta']); ?>"/><br/><br /></td>
   	</tr>
   	<tr>
   	 <td> Projekti maksumus<br />(käibemaksuta):<br /></td>  	

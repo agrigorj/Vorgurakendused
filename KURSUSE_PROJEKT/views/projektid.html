@@ -1,10 +1,41 @@
-<?php if (!empty($puurid)):?>
-	<?php foreach($puurid as $pid=>$puur): ?>
-		<div class="puur">
-			<h5>Puur <?php echo $pid; ?></h5>
-			<?php foreach($puur as $lid=>$loom): ?>
-				<img src="<?php echo $loom['liik']; ?>" alt="<?php echo $loom['nimi']; ?>" title="<?php echo $loom['nimi']; ?>">
-			<?php endforeach; ?>
-		</div>
-	<?php endforeach; ?>
-<?php endif;?>
+<?php 
+
+if ($result->num_rows > 0) {
+    //  output data of each row
+    echo "<table border='1'>
+ <tr>
+    <td>id </td>
+    <td>Tellija </td>
+    <td>Projekti nimetus </td>
+    <td>Projekti nr </td>
+    <td>Projekti sisu</td>
+    <td>Projektijuht</td>
+    <td>Projekteerija</td>
+    <td>Tee pikkus (km)</td>
+    <td>Tee pindala (m2)</td>
+    <td>Teostamise aasta</td>
+    <td>Projekti maksumus (EUR)</td>
+    <td>Link projektile</td>
+ </tr>"; 
+    while($row = $result->fetch_assoc()) {
+        echo "<tr>
+        <td>" . $row['id'] . "</td>
+        <td>" . $row['tellija'] . "</td>
+        <td>" . $row['nimi'] . "</td>
+        <td>" . $row['projektiNr'] . "</td>
+        <td>" . $row['sisu'] . "</td>
+        <td>" . $row['projektijuht'] . "</td>
+        <td>" . $row['projekteerija'] . "</td>
+        <td>" . $row['pikkus'] . "</td>
+        <td>" . $row['pindala'] . "</td>
+        <td>" . $row['aasta'] . "</td>
+        <td>" . $row['maksumus'] . "</td>
+        <td>" . $row['link'] . "</td>
+        </tr>";      }
+     echo "</table>";
+     } else {
+     echo "no results";
+}
+
+?>
+	

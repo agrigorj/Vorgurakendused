@@ -20,24 +20,16 @@ global $connection;
 		header("Location: ?page=login");
 		
 	}else{	
-	$p= mysqli_query($connection, "select distinct(puur) as puur from agrigorj_loomaaed order by puur asc");
-	$puurid=array();
-	while ($r=mysqli_fetch_assoc($p)){
-		
-		$l=mysqli_query($connection, "SELECT * FROM agrigorj_loomaaed WHERE  puur=".mysqli_real_escape_string($connection, $r['puur']));
-		while ($row=mysqli_fetch_assoc($l)) {
-			$puurid[$r['puur']][]=$row;
-			
-		}
+	$sql = "SELECT * FROM agrigorj_projektipank";
+	$result =mysqli_query($connection, $sql);
 	}
-}
 	include_once('views/projektid.html');
 }
 
 function logi(){
 	global $connection;
 	if(!empty($_SESSION["user"])){
-		header("Location: ?page=loomad");
+		header("Location: ?page=projektid");
 	}else{
 		if($_SERVER['REQUEST_METHOD'] == 'POST'){
 			if($_POST["user"] == '' || $_POST["pass"] == ''){
@@ -58,7 +50,7 @@ function logi(){
 					$row = mysqli_num_rows($result);
 					if($row){
 						$_SESSION["user"] = $_POST["user"];
-						header("Location: ?page=loomad");
+						header("Location: ?page=projektid");
 						
 					}else{
 						header("Location: ?page=login");
@@ -85,24 +77,54 @@ function lisa(){
 		header("Location: ?page=login");
 	}else{
 		if($_SERVER['REQUEST_METHOD'] == 'POST'){
-			if($_POST["nimi"] == '' || $_POST["puur"] == '' ){
+			if($_POST["tellija"] == '' || $_POST["nimi"] == '' || $_POST["projektiNr"] == '' || $_POST["sisu"] == '' 
+					|| $_POST["projektijuht"] == '' || $_POST["projekteerija"] == '' || $_POST["pikkus"] == '' || $_POST["pindala"] == '' 
+					|| $_POST["aasta"] == '' || $_POST["maksumus"] == '' ){
 				$errors =array();
-				if(empty($_POST["nimi"])) {
-					$errors[] = "Sisesta nimi!";
+				if(empty($_POST["tellija"])) {
+					$errors[] = "Sisesta Tellija!";
 				}
-				if(empty($_POST["puur"])){
-					$errors[] = "Sisesta puur!";
+				if(empty($_POST["nimi"])){
+					$errors[] = "Sisesta projekti nimetus!";
+				}
+				if(empty($_POST["projektiNr"])){
+					$errors[] = "Sisesta projekti number!";
+				}
+				if(empty($_POST["projektijuht"])){
+					$errors[] = "Sisesta projektijuhi nimi!";
+				}
+				if(empty($_POST["projekteerija"])){
+					$errors[] = "Sisesta projekteerija nimi!";
+				}
+				if(empty($_POST["pikkus"])){
+					$errors[] = "Sisesta projekteeritud tee pikkust!";
+				}
+				if(empty($_POST["pindala"])){
+					$errors[] = "Sisesta projekteeritud tee pindala!";
+				}
+				if(empty($_POST["aasta"])){
+					$errors[] = "Sisesta projekti aasta!";
+				}
+				if(empty($_POST["maksumus"])){
+					$errors[] = "Sisesta projekti maksumus!";
 				}
 				}else{
-					upload('liik');
+					$tellija = mysqli_real_escape_string ($connection, $_POST["tellija"]);
 					$nimi = mysqli_real_escape_string ($connection, $_POST["nimi"]);
-					$puur = mysqli_real_escape_string ($connection, $_POST["puur"]);
-					$liik = mysqli_real_escape_string ($connection, "pildid/".$_FILES["liik"]["name"]);
-					$sql = "INSERT INTO agrigorj_loomaaed (nimi, puur, liik) VALUES ('$nimi','$puur','$liik')";
+					$projektiNr = $_POST["projektiNr"];
+					$projektijuht = mysqli_real_escape_string ($connection, $_POST["projektijuht"]);
+					$projekteerija = mysqli_real_escape_string ($connection, $_POST["projekteerija"]);
+					$pikkus = $_POST["pikkus"];
+					$pindala = $_POST["pindala"];
+					$aasta = $_POST["aasta"];
+					$maksumus = $_POST["maksumus"];
+					$sisu = mysqli_real_escape_string ($connection, $_POST["sisu"]);
+					$link = mysqli_real_escape_string ($connection, $_POST["link"]);					
+					$sql = "INSERT INTO agrigorj_projektipank (tellija, nimi, projektiNr, sisu, projektijuht, projekteerija, pikkus, pindala, aasta, maksumus, link) VALUES ('$tellija','$nimi', '$projektiNr', '$sisu', '$projektijuht', '$projekteerija', '$pikkus', '$pindala','$aasta','$maksumus','$link')";
 					$result = mysqli_query($connection, $sql);
 					$id = mysqli_insert_id($connection);
 					if($id){
-						header("Location: ?page=loomad");
+						header("Location: ?page=projektid");
 					}else{
 						header("Location: ?page=projektivorm");
 					}
@@ -111,6 +133,28 @@ function lisa(){
 		}
 	
 	include_once('views/projektivorm.html');
+}
+function otsi(){
+		global $connection;
+	
+	if(empty($_SESSION["user"])){
+		header("Location: ?page=login");
+	}else{
+		if($_SERVER['REQUEST_METHOD'] == 'POST'){
+			if($_GET["name"] == '' && $_GET["type"] == '' && $_GET["manager"] == ''&& $_GET["designer"] == ''&& $_GET["length"] == ''&& $_GET["area"] == ''&& $_GET["year"] == ''&& $_GET["price"] == '' ){
+				$errors =array();
+				$errors[] = "Vali vähemalt üks parameeter!";
+				}else{
+				
+						
+}
+					
+				}
+				
+			}
+		
+	
+	include_once('views/otsivorm.html');
 }
 
 function upload($name){

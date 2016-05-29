@@ -14,8 +14,8 @@ switch($page){
 	case "login":
 		logi();
 	break;
-	case "loomad":
-		kuva_puurid();
+	case "projektid":
+		kuva_projektid();
 	break;
 	case "logout":
 		logout();
@@ -24,7 +24,7 @@ switch($page){
 		lisa();
 	break;
 	default:
-		include_once('views/v2rav.html');
+		include_once('views/pealeht.html');
 	break;
 }
 

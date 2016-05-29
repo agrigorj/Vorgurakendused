@@ -42,7 +42,7 @@ body {
 	color: DarkSlateGray;
 }
 #content {
-	padding:9px;
+	padding:10px;
 }
 #login{
 	margin:auto;

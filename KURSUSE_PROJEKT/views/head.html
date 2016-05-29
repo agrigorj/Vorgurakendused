@@ -11,8 +11,10 @@
 		<li><a href="?">Pealeht</a></li>
 		<?php if(isset($_SESSION['user'])): ?>
 			<li><a href="?page=projektid">Projektid</a></li>
+			<li><a href="?page=otsi">Otsing</a></li>
 			<li><a href="?page=lisa">Lisa uus projekt</a></li>
 			<li><a href="?page=logout">Logi välja</a></li>
+			
 		<?php else: ?>
 			<li><a href="?page=login">Logi sisse</a></li>
 		<?php endif; ?>

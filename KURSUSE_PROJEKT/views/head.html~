@@ -10,7 +10,7 @@
 	<ul id="menu">
 		<li><a href="?">Pealeht</a></li>
 		<?php if(isset($_SESSION['user'])): ?>
-			<li><a href="?page=loomad">Projektid</a></li>
+			<li><a href="?page=projektid">Projektid</a></li>
 			<li><a href="?page=lisa">Lisa uus projekt</a></li>
 			<li><a href="?page=logout">Logi välja</a></li>
 		<?php else: ?>
