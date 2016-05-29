@@ -143,7 +143,11 @@ function otsi(){
 		if($_SERVER['REQUEST_METHOD'] == 'POST'){
 			if($_POST["name"] == '' && $_POST["manager"] == ''&& $_POST["designer"] == ''&& $_POST["length"] == ''&& $_POST["area"] == ''&& $_POST["year"] == ''&& $_POST["price"] == '' && $_POST["type"] == ''){
 				$errors =array();
-				echo "Vali vähemalt üks parameeter!";
+				?>
+				<script>
+   				alert("Valige vähemalt üks parameeter!");
+				</script>
+				<?php
 				}else{
 					if(!empty($_POST["manager"])) {
 						$projektijuht = mysqli_real_escape_string ($connection, $_POST["manager"]);
