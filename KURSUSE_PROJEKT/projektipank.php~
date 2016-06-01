@@ -22,9 +22,6 @@ switch($page){
 	break;
 	case "otsi":
 		otsi();
-		break;
-	case "edit":
-		edit();
 	break;
 	case "lisa":
 		lisa();

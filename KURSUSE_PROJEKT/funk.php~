@@ -284,7 +284,7 @@ function edit(){
 					$link = mysqli_real_escape_string ($connection, $_POST["link"]);					
 					$sql = "UPDATE agrigorj_projektipank 
 							  SET tellija='$tellija', nimi='$nimi', projektiNr='$projektiNr', sisu='$sisu', projektijuht='$projektijuht', projekteerija='$projekteerija', pikkus='$pikkus', pindala='$pindala', aasta='$aasta', maksumus='$maksumus', link='$link'
-							  WHERE id= $_POST[id]";
+							  WHERE id= $id";
 					$result = mysqli_query($connection, $sql);
 					
 						header("Location: ?page=projektid");

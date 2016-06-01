@@ -31,7 +31,6 @@ if ($result->num_rows > 0) {
         <td>" . $row['maksumus'] . "</td>
         <td><a href='" . $row['link'] . "'>link</a></td>
         <td><a href='http://enos.itcollege.ee/~agrigorj/KURSUSE_PROJEKT/delete.php?id=" . $row['id'] . "'>delete</a></td>
-        <td><a href='projektipank.php?page=edit&id=" . $row['id'] . "'>edit</a></td>
         </tr>";      }
         
      echo "</table>";
