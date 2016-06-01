@@ -2,21 +2,22 @@
 <form action="?page=lisa" method="POST" enctype="multipart/form-data">
 <table cellspacing="10">
    <tr>
-     <td>Projekti Tellija:<br /><br /></td>
-		<td><input type="text" name="tellija" placeholder="Tellija" value="<?php if (isset($projekt['tellija'])) echo htmlspecialchars($projekt['tellija']); ?>"/><br/><br /></td>
+     <td>Projekti Tellija:<span style="color:red"> *</span>  <br /><br /></td>
+		<td><textarea cols="50" rows="5" name="tellija" placeholder="Tellija"><?php if (isset($_POST['tellija'])) echo htmlspecialchars($_POST['tellija']); ?></textarea><br/><br /></td>
+		
 	</tr>
 	<tr>
-		<td> Projekti nimetus:<br /><br /></td>	
-		<td><input type="text" name="nimi" placeholder="Projekti nimetus" value="<?php if (isset($projekt['nimi'])) echo htmlspecialchars($projekt['nimi']); ?>"/><br/><br /></td>
+		<td> Projekti nimetus:<span style="color:red"> *</span><br /><br /></td>	
+		<td><textarea cols="50" rows="5"  name="nimi" placeholder="Projekti nimetus"><?php if (isset($_POST['nimi'])) echo htmlspecialchars($_POST['nimi']); ?></textarea><br/><br /></td>
 	</tr>	
 	<tr>
-		<td> Projekti number:<br /><br /></td>		
-		<td><input type="number" name="projektiNr" placeholder="Projekti nr" value="<?php if (isset($projekt['projektiNr'])) echo htmlspecialchars($projekt['projektiNr']); ?>"/><br/><br /></td>
+		<td> Projekti number:<span style="color:red"> *</span><br /><br /></td>		
+		<td><input type="number" name="projektiNr" placeholder="Projekti nr" value="<?php if (isset($_POST['projektiNr'])) echo htmlspecialchars($_POST['projektiNr']); ?>"/><br/><br /></td>
 	</tr>	
 	<tr>	
-		<td> Projekti sisu:<br /><br /></td>		 
+		<td> Projekti sisu:<span style="color:red"> *</span><br /><br /></td>		 
 		<td> <select name="sisu"> 
-			<option></option>
+			<option ><?php if (isset($_POST['sisu'])) {echo htmlspecialchars ($_POST['sisu']);} ?></option>
      		<option>Kergliiklustee projekt</option>
      		<option>Maantee rekonstrueerimine</option>
     	 	<option>Maantee taastusremont</option>
@@ -27,32 +28,32 @@
   		 </select><br/><br /></td>
   	</tr>
   	<tr>
-		<td> Projektijuht:<br /><br /></td>
-  	 	<td><input type="text" name="projektijuht" placeholder="Projektijuht" value="<?php if (isset($projekt['projektijuht'])) echo htmlspecialchars($projekt['projektijuht']); ?>"/><br/><br /></td>
+		<td> Projektijuht:<span style="color:red"> *</span><br /><br /></td>
+  	 	<td><input type="text" name="projektijuht" placeholder="Projektijuht" value="<?php if (isset($_POST['projektijuht'])) echo htmlspecialchars($_POST['projektijuht']); ?>"/><br/><br /></td>
 	</tr>	
 	  	<tr>
-		<td> Vastutav projekteerija:<br /><br /></td>
-  	 	<td><input type="text" name="projekteerija" placeholder="Projekteerija" value="<?php if (isset($projekt['projekteerija'])) echo htmlspecialchars($projekt['projekteerija']); ?>"/><br/><br /></td>
+		<td> Vastutav projekteerija:<span style="color:red"> *</span><br /><br /></td>
+  	 	<td><input type="text" name="projekteerija" placeholder="Projekteerija" value="<?php if (isset($_POST['projekteerija'])) echo htmlspecialchars($_POST['projekteerija']); ?>"/><br/><br /></td>
 	</tr>	
   	<tr>
-		<td> Tee pikkus (m):<br /><br /></td>
-  	 	<td><input type="number" name="pikkus" placeholder="pikkus" value="<?php if (isset($projekt['pikkus'])) echo htmlspecialchars($projekt['pikkus']); ?>"/><br/><br /></td>
+		<td> Tee pikkus (m):<span style="color:red"> *</span><br /><br /></td>
+  	 	<td><input type="number" name="pikkus" placeholder="pikkus" value="<?php if (isset($_POST['pikkus'])) echo htmlspecialchars($_POST['pikkus']); ?>"/><br/><br /></td>
 	</tr>	
 	<tr>
-		<td> Tee pindala (m2):<br /><br /></td>
-  	 	<td><input type="number" name="pindala" placeholder="pindala" value="<?php if (isset($projekt['pindala'])) echo htmlspecialchars($projekt['pindala']); ?>"/><br/><br /></td>
+		<td> Tee pindala (m2):<span style="color:red"> *</span><br /><br /></td>
+  	 	<td><input type="number" name="pindala" placeholder="pindala" value="<?php if (isset($_POST['pindala'])) echo htmlspecialchars($_POST['pindala']); ?>"/><br/><br /></td>
 	</tr>	
 	<tr>
-		<td> Teostamise aasta:<br /><br /></td>  	
-  	 	<td>	<input type="number" name="aasta" placeholder="aasta" value="<?php if (isset($projekt['aasta'])) echo htmlspecialchars($projekt['aasta']); ?>"/><br/><br /></td>
+		<td> Teostamise aasta:<span style="color:red"> *</span><br /><br /></td>  	
+  	 	<td>	<input type="number" name="aasta" placeholder="aasta" value="<?php if (isset($_POST['aasta'])) echo htmlspecialchars($_POST['aasta']); ?>"/><br/><br /></td>
   	</tr>
   	<tr>
-  	 <td> Projekti maksumus<br />käibemaksuta (EUR):<br /></td>  	
-  	 <td><input type="number" name="maksumus" placeholder="maksumus" value="<?php if (isset($projekt['maksumus'])) echo htmlspecialchars($projekt['maksumus']); ?>"/><br/></td>
+  	 <td> Projekti maksumus<br />käibemaksuta (EUR):<span style="color:red"> *</span><br /></td>  	
+  	 <td><input type="number" name="maksumus" placeholder="maksumus" value="<?php if (isset($_POST['maksumus'])) echo htmlspecialchars($_POST['maksumus']); ?>"/><br/></td>
   	</tr>
   	<tr>
   	 <td><br /> Projekti link:<br /><br /></td>  	
-  	 <td><br /><input type="url" name="link" placeholder="http://" value="<?php if (isset($projekt['link'])) echo htmlspecialchars($projekt['link']); ?>"/><br/><br /></td>
+  	 <td><br /><input type="url" name="link" placeholder="http://" value="<?php if (isset($_POST['link'])) echo htmlspecialchars($_POST['link']); ?>"/><br/><br /></td>
   	</tr>
   	 	</table>
 		<input type="submit" value="Lisa"/> 

@@ -46,6 +46,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     //  output data of each row
     echo "<table border='1'>
  <tr>
+    <td>id </td>
     <td>Tellija </td>
     <td>Projekti nimetus </td>
     <td>Projekti nr </td>
@@ -60,6 +61,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
  </tr>"; 
     while($row = $result->fetch_assoc()) {
         echo "<tr>
+        <td>" . $row['id'] . "</td>
         <td>" . $row['tellija'] . "</td>
         <td>" . $row['nimi'] . "</td>
         <td>" . $row['projektiNr'] . "</td>

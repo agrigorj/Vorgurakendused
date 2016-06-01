@@ -53,7 +53,9 @@ function logi(){
 						header("Location: ?page=projektid");
 						
 					}else{
-						header("Location: ?page=login");
+						$errors[] = "Vale kasutajanimi ja/või";
+						
+						
 					}
 				}				
 			}else{
@@ -81,6 +83,11 @@ function lisa(){
 					|| $_POST["projektijuht"] == '' || $_POST["projekteerija"] == '' || $_POST["pikkus"] == '' || $_POST["pindala"] == '' 
 					|| $_POST["aasta"] == '' || $_POST["maksumus"] == '' ){
 				$errors =array();
+				?>
+				<script>
+   				alert("Tärniga väljad on kohustuslikud!");
+				</script>
+				<?php
 				if(empty($_POST["tellija"])) {
 					$errors[] = "Sisesta Tellija!";
 				}
@@ -89,6 +96,9 @@ function lisa(){
 				}
 				if(empty($_POST["projektiNr"])){
 					$errors[] = "Sisesta projekti number!";
+				}
+					if(empty($_POST["sisu"])){
+					$errors[] = "Sisesta projekti sisu!";
 				}
 				if(empty($_POST["projektijuht"])){
 					$errors[] = "Sisesta projektijuhi nimi!";
@@ -108,6 +118,7 @@ function lisa(){
 				if(empty($_POST["maksumus"])){
 					$errors[] = "Sisesta projekti maksumus!";
 				}
+			
 				}else{
 					$tellija = mysqli_real_escape_string ($connection, $_POST["tellija"]);
 					$nimi = mysqli_real_escape_string ($connection, $_POST["nimi"]);
@@ -143,6 +154,7 @@ function otsi(){
 		if($_SERVER['REQUEST_METHOD'] == 'POST'){
 			if($_POST["name"] == '' && $_POST["manager"] == ''&& $_POST["designer"] == ''&& $_POST["length"] == ''&& $_POST["area"] == ''&& $_POST["year"] == ''&& $_POST["price"] == '' && $_POST["type"] == ''){
 				$errors =array();
+				
 				?>
 				<script>
    				alert("Valige vähemalt üks parameeter!");
@@ -151,7 +163,7 @@ function otsi(){
 				}else{
 					if(!empty($_POST["manager"])) {
 						$projektijuht = mysqli_real_escape_string ($connection, $_POST["manager"]);
-						$sql = "SELECT * FROM agrigorj_projektipank WHERE projektijuht='$projektijuht'";
+						$sql = "SELECT * FROM agrigorj_projektipank WHERE lower(projektijuht)  LIKE '%{$projektijuht}%' "  ;
 					}
 					if(!empty($_POST["year"])) {
 						$aasta = $_POST["year"];
@@ -159,11 +171,11 @@ function otsi(){
 					}
 					if(!empty($_POST["name"])) {
 						$nimi = mysqli_real_escape_string ($connection, $_POST["name"]);
-						$sql = "SELECT * FROM agrigorj_projektipank WHERE nimi='$nimi'";
+						$sql = "SELECT * FROM agrigorj_projektipank WHERE lower(nimi)LIKE'%{$nimi}%'";
 					}
 					if(!empty($_POST["designer"])) {
 						$projekteerija = mysqli_real_escape_string ($connection, $_POST["designer"]);
-						$sql = "SELECT * FROM agrigorj_projektipank WHERE projekteerija='$projekteerija'";
+						$sql = "SELECT * FROM agrigorj_projektipank WHERE lower(projekteerija) LIKE'%{$projekteerija}%'";
 					}
 					if(!empty($_POST["length"])) {
 						$pikkus = $_POST["length"];
@@ -186,43 +198,7 @@ function otsi(){
 					}
 
 					$result =mysqli_query($connection, $sql);
-				   if ($result->num_rows > 0) {
-    //  output data of each row
-    echo "<table border='1'>
- <tr>
-    <td>id </td>
-    <td>Tellija </td>
-    <td>Projekti nimetus </td>
-    <td>Projekti nr </td>
-    <td>Projekti sisu</td>
-    <td>Projektijuht</td>
-    <td>Projekteerija</td>
-    <td>Tee pikkus (km)</td>
-    <td>Tee pindala (m2)</td>
-    <td>Teostamise aasta</td>
-    <td>Projekti maksumus (EUR)</td>
-    <td>Link projektile</td>
- </tr>"; 
-    while($row = $result->fetch_assoc()) {
-        echo "<tr>
-        <td>" . $row['id'] . "</td>
-        <td>" . $row['tellija'] . "</td>
-        <td>" . $row['nimi'] . "</td>
-        <td>" . $row['projektiNr'] . "</td>
-        <td>" . $row['sisu'] . "</td>
-        <td>" . $row['projektijuht'] . "</td>
-        <td>" . $row['projekteerija'] . "</td>
-        <td>" . $row['pikkus'] . "</td>
-        <td>" . $row['pindala'] . "</td>
-        <td>" . $row['aasta'] . "</td>
-        <td>" . $row['maksumus'] . "</td>
-        <td>" . $row['link'] . "</td>
-        </tr>";      }
-     echo "</table>";
-     } else {
-     echo "no results";
-						
-}
+				   
 					
 				}
 				
@@ -230,36 +206,8 @@ function otsi(){
 		
 	
 	include_once('views/otsivorm.html');
-}
-}
-
-function upload($name){
-	$allowedExts = array("jpg", "jpeg", "gif", "png");
-	$allowedTypes = array("image/gif", "image/jpeg", "image/png","image/pjpeg");
-	$extension = end(explode(".", $_FILES[$name]["name"]));
-
-	if ( in_array($_FILES[$name]["type"], $allowedTypes)
-		&& ($_FILES[$name]["size"] < 100000)
-		&& in_array($extension, $allowedExts)) {
-    // fail õiget tüüpi ja suurusega
-		if ($_FILES[$name]["error"] > 0) {
-			$_SESSION['notices'][]= "Return Code: " . $_FILES[$name]["error"];
-			return "";
-		} else {
-      // vigu ei ole
-			if (file_exists("pildid/" . $_FILES[$name]["name"])) {
-        // fail olemas ära uuesti lae, tagasta failinimi
-				$_SESSION['notices'][]= $_FILES[$name]["name"] . " juba eksisteerib. ";
-				return "pildid/" .$_FILES[$name]["name"];
-			} else {
-        // kõik ok, aseta pilt
-				move_uploaded_file($_FILES[$name]["tmp_name"], "pildid/" . $_FILES[$name]["name"]);
-				return "pildid/" .$_FILES[$name]["name"];
-			}
 		}
-	} else {
-		return "";
-	}
 }
+
 
 ?>
