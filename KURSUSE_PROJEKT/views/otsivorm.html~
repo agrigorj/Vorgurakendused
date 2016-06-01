@@ -24,7 +24,7 @@
   	 	<td><input type="text" name="designer" placeholder="Projekteerija" value="<?php if (isset($_POST['designer'])) echo htmlspecialchars($_POST['designer']); ?>"/><br/></td>
  	</tr>
   	<tr>
-		<td> Tee pikkus (km):<br /></td>
+		<td> Tee pikkus (m):<br /></td>
   	 	<td><input type="number" name="length" placeholder="pikkus" value="<?php if (isset($_POST['length'])) echo htmlspecialchars($_POST['length']); ?>"/><br/></td>
 		<td> Tee pindala (m2):<br /></td>
   	 	<td><input type="number" name="area" placeholder="pindala" value="<?php if (isset($_POST['area'])) echo htmlspecialchars($_POST['area']); ?>"/><br/></td>
@@ -46,17 +46,17 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($result)){
     //  output data of each row
     echo "<table border='1'>
  <tr>
-    <td>Tellija </td>
-    <td>Projekti nimetus </td>
-    <td>Projekti nr </td>
-    <td>Projekti sisu</td>
-    <td>Projektijuht</td>
-    <td>Projekteerija</td>
-    <td>Tee pikkus (km)</td>
-    <td>Tee pindala (m2)</td>
-    <td>Teostamise aasta</td>
-    <td>Projekti maksumus (EUR)</td>
-    <td>Link projektile</td>
+    <th><b>Tellija</b> </th>
+    <th><b>Projekti nimetus</b> </th>
+    <th><b>Projekti nr</b> </th>
+    <th><b>Projekti sisu</b></th>
+    <th><b>Projektijuht</b></th>
+    <th><b>Projekteerija</b></th>
+    <th><b>Tee pikkus (m)</b></th>
+    <th><b>Tee pindala (m2)</b></th>
+    <th><b>Teostamise aasta</b></th>
+    <th><b>Projekti maksumus (EUR)</b></th>
+    <th><b>Link projektile</b></th>
  </tr>"; 
     while($row = $result->fetch_assoc()) {
         echo "<tr>
@@ -72,7 +72,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($result)){
         <td>" . $row['maksumus'] . "</td>
         <td><a href='" . $row['link'] . "'>link</a></td>
         <td><a href='http://enos.itcollege.ee/~agrigorj/KURSUSE_PROJEKT/delete.php?id=" . $row['id'] . "'>delete</a></td>
-        <td><a href='projektipank.php?page=edit'>edit</a></td>
+        <td><a href='projektipank.php?page=edit&id=" . $row['id'] . "'>edit</a></td>
         </tr>";      }
      echo "</table>";
      } else {

@@ -8,8 +8,9 @@
 	$db="test";
 	$connection = mysqli_connect($host, $user, $pass, $db) or die("ei saa ühendust mootoriga- ".mysqli_error());
 	mysqli_query($connection, "SET CHARACTER SET UTF8") or die("Ei saanud baasi utf-8-sse - ".mysqli_error($connection));
-	
-    $sql = "SELECT * FROM agrigorj_projektipank WHERE id = $_GET[id]";
+	if($_SERVER['REQUEST_METHOD'] == 'GET'){
+    $sql = "SELECT * FROM agrigorj_projektipank WHERE id = $_GET[id]";}
+    	else{$sql = "SELECT * FROM agrigorj_projektipank WHERE id = $_POST[id]";}
     
  	$result =mysqli_query($connection, $sql);
  	if ($result->num_rows > 0) {
@@ -35,21 +36,21 @@
 <table cellspacing="10">
    <tr>
      <td>Projekti Tellija: <br /><br /></td>
-		<td><textarea cols="50" rows="5" name="tellija" placeholder="Tellija"><?php echo $arrChartData['tellija']?></textarea><br/><br /></td>
+		<td><textarea cols="50" rows="5" name="tellija" placeholder="Tellija"><?php if (isset($_POST['tellija'])) {echo htmlspecialchars($_POST['tellija']);}else{ echo $arrChartData['tellija'];}?></textarea><br/><br /></td>
 		
 	</tr>
 	<tr>
-		<td> Projekti nimetus:<span style="color:red"> *</span><br /><br /></td>	
-		<td><textarea cols="50" rows="5"  name="nimi" placeholder="Projekti nimetus"><?php echo $arrChartData['nimi']?></textarea><br/><br /></td>
+		<td> Projekti nimetus:<br /><br /></td>	
+		<td><textarea cols="50" rows="5"  name="nimi" placeholder="Projekti nimetus"><?php if (isset($_POST['nimi'])) {echo htmlspecialchars($_POST['nimi']);}else{ echo $arrChartData['nimi'];}?></textarea><br/><br /></td>
 	</tr>	
 	<tr>
-		<td> Projekti number:<span style="color:red"> *</span><br /><br /></td>		
-		<td><input type="number" name="projektiNr" placeholder="Projekti nr" value="<?php echo $arrChartData['projektiNr']?>"><br/><br /></td>
+		<td> Projekti number:<br /><br /></td>		
+		<td><input type="number" name="projektiNr" placeholder="Projekti nr" value="<?php if (isset($_POST['projektiNr'])) {echo htmlspecialchars($_POST['projektiNr']);}else{ echo $arrChartData['projektiNr'];}?>"><br/><br /></td>
 	</tr>	
 	<tr>	
-		<td> Projekti sisu:<span style="color:red"> *</span><br /><br /></td>		 
+		<td> Projekti sisu:<br /><br /></td>		 
 		<td> <select name="sisu"> 
-			<option ><?php echo $arrChartData['sisu']?></option>
+			<option ><?php if (isset($_POST['sisu'])) {echo htmlspecialchars($_POST['sisu']);}else{ echo $arrChartData['sisu'];}?></option>
      		<option>Kergliiklustee projekt</option>
      		<option>Maantee rekonstrueerimine</option>
     	 	<option>Maantee taastusremont</option>
@@ -60,32 +61,32 @@
   		 </select><br/><br /></td>
   	</tr>
   	<tr>
-		<td> Projektijuht:<span style="color:red"> *</span><br /><br /></td>
-  	 	<td><input type="text" name="projektijuht" placeholder="Projektijuht" value="<?php echo $arrChartData['projektijuht']?>"><br/><br /></td>
+		<td> Projektijuht:<br /><br /></td>
+  	 	<td><input type="text" name="projektijuht" placeholder="Projektijuht" value="<?php if (isset($_POST['projektijuht'])) {echo htmlspecialchars($_POST['projektijuht']);}else{ echo $arrChartData['projektijuht'];}?>"><br/><br /></td>
 	</tr>	
 	  	<tr>
-		<td> Vastutav projekteerija:<span style="color:red"> *</span><br /><br /></td>
-  	 	<td><input type="text" name="projekteerija" placeholder="Projekteerija" value="<?php echo $arrChartData['projekteerija']?>"><br/><br /></td>
+		<td> Vastutav projekteerija:<br /><br /></td>
+  	 	<td><input type="text" name="projekteerija" placeholder="Projekteerija" value="<?php if (isset($_POST['projekteerija'])) {echo htmlspecialchars($_POST['projekteerija']);}else{ echo $arrChartData['projekteerija'];}?>"><br/><br /></td>
 	</tr>	
   	<tr>
-		<td> Tee pikkus (m):<span style="color:red"> *</span><br /><br /></td>
-  	 	<td><input type="number" name="pikkus" placeholder="pikkus" value="<?php echo $arrChartData['pikkus']?>"><br/><br /></td>
+		<td> Tee pikkus (m):<br /><br /></td>
+  	 	<td><input type="number" name="pikkus" placeholder="pikkus" value="<?php if (isset($_POST['pikkus'])) {echo htmlspecialchars($_POST['pikkus']);}else{ echo $arrChartData['pikkus'];}?>"><br/><br /></td>
 	</tr>	
 	<tr>
-		<td> Tee pindala (m2):<span style="color:red"> *</span><br /><br /></td>
-  	 	<td><input type="number" name="pindala" placeholder="pindala" value="<?php echo $arrChartData['pindala']?>"/><br/><br /></td>
+		<td> Tee pindala (m2):<br /><br /></td>
+  	 	<td><input type="number" name="pindala" placeholder="pindala" value="<?php if (isset($_POST['pindala'])) {echo htmlspecialchars($_POST['pindala']);}else{ echo $arrChartData['pindala'];}?>"/><br/><br /></td>
 	</tr>	
 	<tr>
-		<td> Teostamise aasta:<span style="color:red"> *</span><br /><br /></td>  	
-  	 	<td>	<input type="number" name="aasta" placeholder="aasta" value="<?php echo $arrChartData['aasta']?>"><br/><br /></td>
+		<td> Teostamise aasta:<br /><br /></td>  	
+  	 	<td>	<input type="number" name="aasta" placeholder="aasta" value="<?php if (isset($_POST['aasta'])) {echo htmlspecialchars($_POST['aasta']);}else{ echo $arrChartData['aasta'];}?>"><br/><br /></td>
   	</tr>
   	<tr>
-  	 <td> Projekti maksumus<br />käibemaksuta (EUR):<span style="color:red"> *</span><br /></td>  	
-  	 <td><input type="number" name="maksumus" placeholder="maksumus" value="<?php echo $arrChartData['maksumus']?>"><br/></td>
+  	 <td> Projekti maksumus<br />käibemaksuta (EUR):<br /></td>  	
+  	 <td><input type="number" name="maksumus" placeholder="maksumus" value="<?php if (isset($_POST['maksumus'])) {echo htmlspecialchars($_POST['maksumus']);}else{ echo $arrChartData['maksumus'];}?>"><br/></td>
   	</tr>
   	<tr>
   	 <td><br /> Projekti link:<br /><br /></td>  	
-  	 <td><br /><input type="url" name="link" placeholder="http://" value="<?php echo $arrChartData['link']?>"/><br/><br /></td>
+  	 <td><br /><input type="url" name="link" placeholder="http://" value="<?php if (isset($_POST['link'])) {echo htmlspecialchars($_POST['link']);}else{ echo $arrChartData['link'];}?>"/><br/><br /></td>
   	</tr>
   	 	</table>
   	 	<input type="hidden" name="id" value="<?php echo $arrChartData['id']?>">

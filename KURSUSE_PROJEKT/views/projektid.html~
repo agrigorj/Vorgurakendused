@@ -1,20 +1,23 @@
-<?php 
 
+
+<?php 
 if ($result->num_rows > 0) {
     //  output data of each row
-    echo "<table border='1'>
+    echo "<table class='projektid'id='alternatecolor'>
  <tr>
-    <td><b>Tellija</b> </td>
-    <td><b>Projekti nimetus</b> </td>
-    <td><b>Projekti nr</b> </td>
-    <td><b>Projekti sisu</b></td>
-    <td><b>Projektijuht</b></td>
-    <td><b>Projekteerija</b></td>
-    <td><b>Tee pikkus (m)</b></td>
-    <td><b>Tee pindala (m2)</b></td>
-    <td><b>Teostamise aasta</b></td>
-    <td><b>Projekti maksumus</b> (EUR)</td>
-    <td><b>Link projektile</b></td>
+    <th><b>Tellija</b> </th>
+    <th><b>Projekti nimetus</b></th>
+    <th><b>Projekti nr</b> </th>
+    <th><b>Projekti sisu</b></th>
+    <th><b>Projektijuht</b></th>
+    <th><b>Projekteerija</b></th>
+    <th><b>Tee pikkus (m)</b></th>
+    <th><b>Tee pindala (m2)</b></th>
+    <th><b>Teostamise aasta</b></th>
+    <th><b>Projekti maksumus (EUR)</b> </th>
+    <th><b>Link projektile</b></th>
+    <th></th>
+    <th></th>
     
  </tr>"; 
     while($row = $result->fetch_assoc()) {
@@ -31,6 +34,7 @@ if ($result->num_rows > 0) {
         <td>" . $row['maksumus'] . "</td>
         <td><a href='" . $row['link'] . "'>link</a></td>
         <td><a href='http://enos.itcollege.ee/~agrigorj/KURSUSE_PROJEKT/delete.php?id=" . $row['id'] . "'>delete</a></td>
+        <td><a href='projektipank.php?page=edit&id=" . $row['id'] . "'>edit</a></td>
         </tr>";      }
         
      echo "</table>";
