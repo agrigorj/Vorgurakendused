@@ -3,9 +3,9 @@
      <form  method="POST" action="?page=otsi"  enctype="multipart/form-data"> 
 <table cellspacing="10">
    <tr>
-		<td> Projekti nimetus:<br /></td>	
-		<td><input type="text" name="name" placeholder="Projekti nimetus" value="<?php if (isset($_POST['name'])) echo htmlspecialchars($_POST['name']); ?>"/><br/></td>
-		<td> Projekti sisu:<br /></td>		 
+		<td> Projekti nimetus:<br></td>	
+		<td><input type="text" name="name" placeholder="Projekti nimetus" value="<?php if (isset($_POST['name'])) echo htmlspecialchars($_POST['name']); ?>"><br></td>
+		<td> Projekti sisu:<br></td>		 
 		<td> <select name="type"> 
 			<option><?php if (isset($_POST['type'])) echo htmlspecialchars($_POST['type']); ?></option>
      		<option>Kergliiklustee projekt</option>
@@ -15,29 +15,29 @@
      		<option>Linnatänava rekonstrueerimine</option>
      		<option>Parkimisplatsid</option>
     		 <option>Juurdepääsutee</option> 
-  		 </select><br/></td>
+  		 </select><br></td>
   	</tr>	
 	<tr>
-		<td> Projektijuht:<br /></td>
-  	 	<td><input type="text" name="manager" placeholder="Projektijuht" value="<?php if (isset($_POST['manager'])) echo htmlspecialchars($_POST['manager']); ?>"/><br/></td>
+		<td> Projektijuht:<br></td>
+  	 	<td><input type="text" name="manager" placeholder="Projektijuht" value="<?php if (isset($_POST['manager'])) echo htmlspecialchars($_POST['manager']); ?>"><br></td>
 		<td> Vastutav projekteerija:<br /></td>
-  	 	<td><input type="text" name="designer" placeholder="Projekteerija" value="<?php if (isset($_POST['designer'])) echo htmlspecialchars($_POST['designer']); ?>"/><br/></td>
+  	 	<td><input type="text" name="designer" placeholder="Projekteerija" value="<?php if (isset($_POST['designer'])) echo htmlspecialchars($_POST['designer']); ?>"><br></td>
  	</tr>
   	<tr>
-		<td> Tee pikkus (m):<br /></td>
-  	 	<td><input type="number" name="length" placeholder="pikkus" value="<?php if (isset($_POST['length'])) echo htmlspecialchars($_POST['length']); ?>"/><br/></td>
-		<td> Tee pindala (m2):<br /></td>
-  	 	<td><input type="number" name="area" placeholder="pindala" value="<?php if (isset($_POST['area'])) echo htmlspecialchars($_POST['area']); ?>"/><br/></td>
+		<td> Tee pikkus (m):<br></td>
+  	 	<td><input type="number" name="length" placeholder="pikkus" value="<?php if (isset($_POST['length'])) echo htmlspecialchars($_POST['length']); ?>"><br></td>
+		<td> Tee pindala (m2):<br></td>
+  	 	<td><input type="number" name="area" placeholder="pindala" value="<?php if (isset($_POST['area'])) echo htmlspecialchars($_POST['area']); ?>"><br></td>
 	</tr>
   	<tr>
-		<td> Teostamise aasta:<br /></td>  	
-  	 	<td>	<input type="number" name="year" placeholder="aasta" value="<?php if (isset($_POST['year'])) echo htmlspecialchars($_POST['year']); ?>"/><br/></td>
+		<td> Teostamise aasta:<br></td>  	
+  	 	<td>	<input type="number" name="year" placeholder="aasta" value="<?php if (isset($_POST['year'])) echo htmlspecialchars($_POST['year']); ?>"><br></td>
  
-  	 	<td> Projekti maksumus käibemaksuta (EUR):<br /></td>  	
-  	 	<td><input type="number" name="price" placeholder="maksumus" value="<?php if (isset($_POST['price'])) echo htmlspecialchars($_POST['price']); ?>"/><br/></td>
+  	 	<td> Projekti maksumus käibemaksuta (EUR):<br></td>  	
+  	 	<td><input type="number" name="price" placeholder="maksumus" value="<?php if (isset($_POST['price'])) echo htmlspecialchars($_POST['price']); ?>"><br></td>
   	</tr>
   	 	</table>
-  		 <input type="submit" value="Otsi"/> 
+  		 <input type="submit" value="Otsi"> 
 </table>
 <p>
 <?php 
@@ -72,9 +72,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($result)){
         <td>" . $row['pindala'] . "</td>
         <td>" . $row['aasta'] . "</td>
         <td>" . $row['maksumus'] . "</td>
-        <td><a href='" . $row['link'] . "'>link</a></td>
-        <td><a href='http://enos.itcollege.ee/~agrigorj/KURSUSE_PROJEKT/delete.php?id=" . $row['id'] . "'>delete</a></td>
-        <td><a href='projektipank.php?page=edit&id=" . $row['id'] . "'>edit</a></td>
+        <td><a href='" . $row['link'] . "'title='link'><img src='pildid/link.png'></a></td>
+        <td><a href='http://enos.itcollege.ee/~agrigorj/KURSUSE_PROJEKT/delete.php?id=" . $row['id'] . "'title='delete' onclick='return confirm_delete()'><img src='pildid/Delete.png'></a></td>
+        <td><a href='projektipank.php?page=edit&id=" . $row['id'] . "'title='edit' ><img src='pildid/edit.png'></a></td>
         </tr>";      }
      echo "</table>";
      } else {
@@ -86,3 +86,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($result)){
 	</p>
 	  </body> 
 </p> 
+<script type="text/javascript">
+function confirm_delete() {
+  return confirm('Oled kindel, et tahad andmed kustutada?');
+}
+</script>

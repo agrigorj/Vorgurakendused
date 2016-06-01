@@ -32,9 +32,9 @@ if ($result->num_rows > 0) {
         <td>" . $row['pindala'] . "</td>
         <td>" . $row['aasta'] . "</td>
         <td>" . $row['maksumus'] . "</td>
-        <td><a href='" . $row['link'] . "'>link</a></td>
-        <td><a href='http://enos.itcollege.ee/~agrigorj/KURSUSE_PROJEKT/delete.php?id=" . $row['id'] . "'>delete</a></td>
-        <td><a href='projektipank.php?page=edit&id=" . $row['id'] . "'>edit</a></td>
+        <td><a href='" . $row['link'] . "'title='link'><img src='pildid/link.png'></a></td>
+        <td><a href='http://enos.itcollege.ee/~agrigorj/KURSUSE_PROJEKT/delete.php?id=" . $row['id'] . "'title='delete' onclick='return confirm_delete()'><img src='pildid/Delete.png'></a></td>
+        <td><a href='projektipank.php?page=edit&id=" . $row['id'] . "'title='edit' ><img src='pildid/edit.png'></a></td>
         </tr>";      }
         
      echo "</table>";
@@ -43,4 +43,8 @@ if ($result->num_rows > 0) {
 }
 
 ?>
-	
+<script type="text/javascript">
+function confirm_delete() {
+  return confirm('Oled kindel, et tahad andmed kustutada?');
+}
+</script>
