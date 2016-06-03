@@ -12,7 +12,7 @@
  		$result =mysqli_query($connection, $sql);
     ?>
     
-    <script>
+<script>
 
   document.location = "projektipank.php?page=projektid";
 

@@ -1,5 +1,4 @@
-<?php
-
+﻿<?php
 
 function connect_db(){
 	global $connection;
@@ -14,54 +13,48 @@ function connect_db(){
 
 function kuva_projektid(){
 	
-global $connection;	
+	global $connection;	
 	
-	if(empty($_SESSION["user"])){
-		header("Location: ?page=login");
+		if(empty($_SESSION["user"])){
+			header("Location: ?page=login");
 		
-	}else{	
-	$sql = "SELECT * FROM agrigorj_projektipank";
-	$result =mysqli_query($connection, $sql);
-	}
+			}else{	
+				$sql = "SELECT * FROM agrigorj_projektipank";
+				$result =mysqli_query($connection, $sql);
+				}
 	include_once('views/projektid.html');
 }
 
 function logi(){
 	global $connection;
-	if(!empty($_SESSION["user"])){
-		header("Location: ?page=projektid");
-	}else{
-		if($_SERVER['REQUEST_METHOD'] == 'POST'){
-			if($_POST["user"] == '' || $_POST["pass"] == ''){
-				$errors =array();
-				if(empty($_POST["user"])) {
-					
-					$errors[] = "Kasutajanimi puudub!";
-				}
-				
-				if(empty($_POST["pass"]))
-					
-					$errors[] = "Parooli väli on tühi!";
-				}else{
-					$u = mysqli_real_escape_string ($connection, $_POST["user"]);
-					$p = mysqli_real_escape_string ($connection, $_POST["pass"]);
-					$sql = "SELECT id FROM agrigorj_kylastajad WHERE username='$u' AND passw=sha1('$p')";
-					$result = mysqli_query($connection, $sql);
-					$row = mysqli_num_rows($result);
-					if($row){
-						$_SESSION["user"] = $_POST["user"];
-						header("Location: ?page=projektid");
+	   if(!empty($_SESSION["user"])){
+	    header("Location: ?page=projektid");
+	       }else{
+		   if($_SERVER['REQUEST_METHOD'] == 'POST'){
+		      if($_POST["user"] == '' || $_POST["pass"] == ''){
+			$errors =array();
+			   if(empty($_POST["user"])) {
+			   $errors[] = "Kasutajanimi puudub!";
+			   }
+			      if(empty($_POST["pass"]))
+				 $errors[] = "Parooli väli on tühi!";
+                              }else{
+				$u = mysqli_real_escape_string ($connection, $_POST["user"]);
+				$p = mysqli_real_escape_string ($connection, $_POST["pass"]);
+				$sql = "SELECT id FROM agrigorj_kylastajad WHERE username='$u' AND passw=sha1('$p')";
+				$result = mysqli_query($connection, $sql);
+				$row = mysqli_num_rows($result);
+				   if($row){
+				     $_SESSION["user"] = $_POST["user"];
+				     header("Location: ?page=projektid");
 						
-					}else{
-						$errors[] = "Vale kasutajanimi ja/või";
-						
-						
-					}
-				}				
-			}else{
-				
-			}
-		}
+				  }else{
+			           $errors[] = "Vale kasutajanimi ja/või";
+				        }
+												
+                                    }		
+                   }else{}
+	    }
 
 	include_once('views/login.html');
 }
@@ -73,7 +66,7 @@ function logout(){
 }
 
 function lisa(){
-		global $connection;
+	global $connection;
 	
 	if(empty($_SESSION["user"])){
 		header("Location: ?page=login");
@@ -120,17 +113,17 @@ function lisa(){
 				}
 			
 				}else{
-					$tellija = mysqli_real_escape_string ($connection, $_POST["tellija"]);
-					$nimi = mysqli_real_escape_string ($connection, $_POST["nimi"]);
-					$projektiNr = $_POST["projektiNr"];
-					$projektijuht = mysqli_real_escape_string ($connection, $_POST["projektijuht"]);
-					$projekteerija = mysqli_real_escape_string ($connection, $_POST["projekteerija"]);
-					$pikkus = $_POST["pikkus"];
-					$pindala = $_POST["pindala"];
-					$aasta = $_POST["aasta"];
-					$maksumus = $_POST["maksumus"];
-					$sisu = mysqli_real_escape_string ($connection, $_POST["sisu"]);
-					$link = mysqli_real_escape_string ($connection, $_POST["link"]);					
+					$tellija = htmlspecialchars (mysqli_real_escape_string ($connection, $_POST["tellija"]));
+					$nimi = htmlspecialchars (mysqli_real_escape_string ($connection, $_POST["nimi"]));
+					$projektiNr = htmlspecialchars ($_POST["projektiNr"]);
+					$projektijuht =htmlspecialchars ( mysqli_real_escape_string ($connection, $_POST["projektijuht"]));
+					$projekteerija =htmlspecialchars ( mysqli_real_escape_string ($connection, $_POST["projekteerija"]));
+					$pikkus =htmlspecialchars ( $_POST["pikkus"]);
+					$pindala = htmlspecialchars ($_POST["pindala"]);
+					$aasta = htmlspecialchars ($_POST["aasta"]);
+					$maksumus = htmlspecialchars ($_POST["maksumus"]);
+					$sisu = htmlspecialchars (mysqli_real_escape_string ($connection, $_POST["sisu"]));
+					$link =htmlspecialchars ( mysqli_real_escape_string ($connection, $_POST["link"]));					
 					$sql = "INSERT INTO agrigorj_projektipank (tellija, nimi, projektiNr, sisu, projektijuht, projekteerija, pikkus, pindala, aasta, maksumus, link) VALUES ('$tellija','$nimi', '$projektiNr', '$sisu', '$projektijuht', '$projekteerija', '$pikkus', '$pindala','$aasta','$maksumus','$link')";
 					$result = mysqli_query($connection, $sql);
 					$id = mysqli_insert_id($connection);
@@ -146,10 +139,8 @@ function lisa(){
 	include_once('views/projektivorm.html');
 }
 function otsi(){
-		global $connection;
-		global $query_text;
-		
-	
+global $connection;
+global $query_text;
 	if(empty($_SESSION["user"])){
 		header("Location: ?page=login");
 	}else{
@@ -271,17 +262,17 @@ function edit(){
 			
 				}else{
 					$id=$_POST["id"];
-					$tellija = mysqli_real_escape_string ($connection, $_POST["tellija"]);
-					$nimi = mysqli_real_escape_string ($connection, $_POST["nimi"]);
-					$projektiNr = $_POST["projektiNr"];
-					$projektijuht = mysqli_real_escape_string ($connection, $_POST["projektijuht"]);
-					$projekteerija = mysqli_real_escape_string ($connection, $_POST["projekteerija"]);
-					$pikkus = $_POST["pikkus"];
-					$pindala = $_POST["pindala"];
-					$aasta = $_POST["aasta"];
-					$maksumus = $_POST["maksumus"];
-					$sisu = mysqli_real_escape_string ($connection, $_POST["sisu"]);
-					$link = mysqli_real_escape_string ($connection, $_POST["link"]);					
+					$tellija = htmlspecialchars (mysqli_real_escape_string ($connection, $_POST["tellija"]));
+					$nimi = htmlspecialchars (mysqli_real_escape_string ($connection, $_POST["nimi"]));
+					$projektiNr =htmlspecialchars ( $_POST["projektiNr"]);
+					$projektijuht =htmlspecialchars ( mysqli_real_escape_string ($connection, $_POST["projektijuht"]));
+					$projekteerija = htmlspecialchars (mysqli_real_escape_string ($connection, $_POST["projekteerija"]));
+					$pikkus = htmlspecialchars ($_POST["pikkus"]);
+					$pindala = htmlspecialchars ($_POST["pindala"]);
+					$aasta = htmlspecialchars ($_POST["aasta"]);
+					$maksumus =htmlspecialchars ( $_POST["maksumus"]);
+					$sisu = htmlspecialchars (mysqli_real_escape_string ($connection, $_POST["sisu"]));
+					$link = htmlspecialchars (mysqli_real_escape_string ($connection, $_POST["link"]));					
 					$sql = "UPDATE agrigorj_projektipank 
 							  SET tellija='$tellija', nimi='$nimi', projektiNr='$projektiNr', sisu='$sisu', projektijuht='$projektijuht', projekteerija='$projekteerija', pikkus='$pikkus', pindala='$pindala', aasta='$aasta', maksumus='$maksumus', link='$link'
 							  WHERE id= $_POST[id]";

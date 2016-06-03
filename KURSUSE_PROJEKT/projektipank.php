@@ -1,14 +1,12 @@
-
-
 <?php
 require_once('funk.php');
-session_start();
-connect_db();
+	session_start();
+	connect_db();
 
-$page="pealeht";
-if (isset($_GET['page']) && $_GET['page']!=""){
+	$page="pealeht";
+	if (isset($_GET['page']) && $_GET['page']!=""){
 	$page=htmlspecialchars($_GET['page']);
-}
+	}
 
 include_once('views/head.html');
 
@@ -24,7 +22,7 @@ switch($page){
 	break;
 	case "otsi":
 		otsi();
-		break;
+	break;
 	case "edit":
 		edit();
 	break;

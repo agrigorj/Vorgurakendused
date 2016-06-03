@@ -47,12 +47,12 @@ text-align: center;
 }
 
 body {
-	background: #E6E6FA;
+	background: whitesmoke;
 	margin:0px;
 }
 #wrap{
 	width: 1400px;
-	background: #FFFFE0;
+	background: whitesmoke;
 	margin: auto;
 	overflow: auto;
 	min-height:100px;
