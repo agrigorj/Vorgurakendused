@@ -158,45 +158,45 @@ global $query_text;
 					if(!empty($_POST["manager"])) {
 						$projektijuht = mysqli_real_escape_string ($connection, $_POST["manager"]);
 						$query_text="lower(projektijuht)  LIKE '%{$projektijuht}%'";
-					
+						//$sql = "SELECT * FROM agrigorj_projektipank WHERE lower(projektijuht)  LIKE '%{$projektijuht}%' "  ;
 					}
 					if(!empty($_POST["year"])) {
 						$aasta = $_POST["year"];
 						$query_text.= " AND aasta='$aasta'";
-	
+						//$sql = "SELECT * FROM agrigorj_projektipank WHERE aasta='$aasta' ";
 					}
 					if(!empty($_POST["name"])) {
 						$nimi = mysqli_real_escape_string ($connection, $_POST["name"]);
 						$query_text.= " AND lower(nimi) LIKE '%{$nimi}%'";
-					
+						//$sql = "SELECT * FROM agrigorj_projektipank WHERE lower(nimi)LIKE'%{$nimi}%'";
 					}
 					if(!empty($_POST["designer"])) {
 						$projekteerija = mysqli_real_escape_string ($connection, $_POST["designer"]);
 						$query_text.= " AND lower(projekteerija) LIKE'%{$projekteerija}%'";
-
+						//$sql = "SELECT * FROM agrigorj_projektipank WHERE lower(projekteerija) LIKE'%{$projekteerija}%'";
 					}
 					if(!empty($_POST["length"])) {
 						$pikkus = $_POST["length"];
 						$query_text.= " AND pikkus>'$pikkus'";
-		
+						//$sql = "SELECT * FROM agrigorj_projektipank WHERE pikkus>'$pikkus'";
 					}
 						
 					if(!empty($_POST["area"])) {
 						$pindala = $_POST["area"];
 						$query_text.= " AND pindala>'$pindala'";
-					
+						//$sql = "SELECT * FROM agrigorj_projektipank WHERE pindala>'$pindala'";
 					}
 						
 					if(!empty($_POST["price"])) {
 						$maksumus = $_POST["price"];
 						$query_text.= " AND maksumus >'$maksumus'";
-						
+						//$sql = "SELECT * FROM agrigorj_projektipank WHERE maksumus >'$maksumus'";
 					}
 						
 					if(!empty($_POST["type"])) {
 						$sisu = mysqli_real_escape_string ($connection, $_POST["type"]);
 						$query_text.= " AND sisu='$sisu'";	
-						
+						//$sql = "SELECT * FROM agrigorj_projektipank WHERE sisu='$sisu'";
 					}
 					
 					if($query_text[1]=='A') {

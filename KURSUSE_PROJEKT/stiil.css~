@@ -32,7 +32,7 @@ table.projektid td {
 	width: 100%;
 	padding:300px 0px;
 	padding-bottom: 150px;
-	
+	color: #00FF7F;
 	
 	
 	
@@ -47,12 +47,12 @@ text-align: center;
 }
 
 body {
-	background: whitesmoke;
+	background: #E6E6FA;
 	margin:0px;
 }
 #wrap{
 	width: 1400px;
-	background: whitesmoke;
+	background: #FFFFE0;
 	margin: auto;
 	overflow: auto;
 	min-height:100px;
