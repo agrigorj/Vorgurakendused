@@ -73,12 +73,12 @@ function lisa(){
 	}else{
 		if($_SERVER['REQUEST_METHOD'] == 'POST'){
 			if($_POST["tellija"] == '' || $_POST["nimi"] == '' || $_POST["projektiNr"] == '' || $_POST["sisu"] == '' 
-					|| $_POST["projektijuht"] == '' || $_POST["projekteerija"] == '' || $_POST["pikkus"] == '' || $_POST["pindala"] == '' 
-					|| $_POST["aasta"] == '' || $_POST["maksumus"] == '' ){
+					|| $_POST["projektijuht"] == '' || $_POST["projekteerija"] == '' || $_POST["pikkus"] == '' || $_POST["pikkus"] < 0 || $_POST["pindala"] == '' 
+					||$_POST["pindala"] < 0 || $_POST["aasta"] == '' ||$_POST["aasta"] < 1984 ||$_POST["maksumus"] < 0 || $_POST["maksumus"] == '' ){
 				$errors =array();
 				?>
 				<script>
-   				alert("Tärniga väljad on kohustuslikud!");
+   				alert("Palun kontrolli andmed!");
 				</script>
 				<?php
 				if(empty($_POST["tellija"])) {
@@ -102,11 +102,23 @@ function lisa(){
 				if(empty($_POST["pikkus"])){
 					$errors[] = "Sisesta projekteeritud tee pikkust!";
 				}
+				if($_POST["pikkus"]<0){
+					$errors[] = "Pikkus ei saa olla negatiivne!";
+				}
 				if(empty($_POST["pindala"])){
 					$errors[] = "Sisesta projekteeritud tee pindala!";
 				}
+				if($_POST["pindala"]<0){
+					$errors[] = "Pindala ei saa olla negatiivne!";
+				}
 				if(empty($_POST["aasta"])){
 					$errors[] = "Sisesta projekti aasta!";
+				}
+				if($_POST["aasta"]<1984 OR $_POST["aasta"]>2099 ){
+					$errors[] = "Palun kontrolli projekti aasta!";
+				}
+				if($_POST["maksumus"]<0){
+					$errors[] = "Maksumus ei saa olla negatiivne!";
 				}
 				if(empty($_POST["maksumus"])){
 					$errors[] = "Sisesta projekti maksumus!";
@@ -145,12 +157,12 @@ global $query_text;
 		header("Location: ?page=login");
 	}else{
 		if($_SERVER['REQUEST_METHOD'] == 'POST'){
-			if($_POST["name"] == '' && $_POST["manager"] == ''&& $_POST["designer"] == ''&& $_POST["length"] == ''&& $_POST["area"] == ''&& $_POST["year"] == ''&& $_POST["price"] == '' && $_POST["type"] == ''){
+			if($_POST["name"] == '' && $_POST["manager"] == ''&& $_POST["designer"] == ''&& $_POST["length"] == '' || $_POST["length"] <0 && $_POST["area"] == '' || $_POST["area"] <0 && $_POST["year"] == '' ||$_POST["year"] <1984 && $_POST["price"] == '' ||$_POST["price"] <0 && $_POST["type"] == ''){
 				$errors =array();
 				
 				?>
 				<script>
-   				alert("Valige vähemalt üks parameeter!");
+   				alert("Palun kotrolli sisendit!");
 				</script>
 				<?php
 				}else{
